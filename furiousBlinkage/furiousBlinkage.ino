@@ -2,6 +2,7 @@
 // Uses LED L on the Arduino board
 #define arrayLength 6
 
+int i,x;
 int ledPin = 13;  // LED is connected with digital pin 13
 int numbers[] = {1,4,6,7,8,24};
 
@@ -19,7 +20,7 @@ void setup(){
 // The main program is an infinite loop
 void loop(){
   int sum = 0;
-  for(int i=0; i<arrayLength; i++){
+  for(i=0; i<arrayLength; i++){
     Serial.print(numbers[i]);
     if(i != arrayLength -1){
       Serial.print("+");
@@ -30,19 +31,29 @@ void loop(){
   Serial.print(sum);
   Serial.println(" sir!");
   Serial.println();
+  
+  int result;
+  for(x=0; x<=20; x++){
+    result = map(x, 0, 20, 5, 15);
+    Serial.println(result);
+  }
 
   int count = 0;
-  while(true){
-    
-    if(count == 100){
+  int delayLength = 250;
+  while(true){    
+    if(count == 10){
       Serial.println("You should probably turn me off now");
+      delayLength = 1000;
     }
-    digitalWrite(ledPin, HIGH);
-    delay(50);
-    digitalWrite(ledPin, LOW);
-    delay(50);
+    blinkOnce(ledPin, delayLength);
     count++;
-    continue;
   }
+}
+
+void blinkOnce(int pin, int delayLength){
+    digitalWrite(pin, HIGH);
+    delay(delayLength);
+    digitalWrite(pin, LOW);
+    delay(delayLength);
 }
 
