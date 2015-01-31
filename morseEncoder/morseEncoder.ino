@@ -56,14 +56,15 @@ char encoding[][7] = {
 };
 
 int ledPin = 13;
-int timeUnit = 25;
+int buzzerPin = 11;
+int timeUnit = 50;
 int dotLength = timeUnit;
 int dashLength = 3*timeUnit;
 int interElementGapLength = timeUnit;
 int letterGapLength = 2*timeUnit;  
 int spaceLength = 4*timeUnit;
-int ucOffset = 65;
-int lcOffset = 97;  // Offset for lower case characters from lower case offset
+int ucOffset = 65;  // Upper case ASCII character offset
+int lcOffset = 97;  // Lower case ASCII character offset
 
 char input;
 byte correctedInput;
@@ -143,6 +144,8 @@ void space(){
 
 void blinkOnce(int delayLength){
     digitalWrite(ledPin, HIGH);
+    analogWrite(buzzerPin, 127);
     delay(delayLength);
     digitalWrite(ledPin, LOW);
+    analogWrite(buzzerPin, 0);
 }
