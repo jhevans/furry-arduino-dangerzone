@@ -20,8 +20,6 @@ void loop(){
 
 
 void blinkOnce(int pin, int delayLength){
-  Serial.println(pin);
-  Serial.println(delayLength);
   digitalWrite(pin, HIGH);
   delay(delayLength);
   digitalWrite(pin, LOW);
