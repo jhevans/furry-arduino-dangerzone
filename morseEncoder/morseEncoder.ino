@@ -110,6 +110,9 @@ void loop(){
     }
     delay(letterGapLength);
     Serial.print(' ');
+    if (Serial.available() == 0){
+       Serial.println();    
+    }
   }
 }
 
