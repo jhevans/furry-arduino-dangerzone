@@ -15,12 +15,12 @@ void loop() {
   if(!digitalRead(SW1)) {
     delay(50);
     if(!digitalRead(SW1)){
+      do {
+      } while(!digitalRead(SW1));
       i++;
       Serial.print("Button SW1 has been pressed ");
       Serial.print(i, DEC);
       Serial.println(" times");
-      do {
-      } while(!digitalRead(SW1));
     }
   }
 }
