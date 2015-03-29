@@ -1,6 +1,7 @@
-// Debouncing a push button V1
-// p.191 Franzis Arduino Turoial Kit Manual
+// Debouncing a push button V2
+// p.191 Franzis Arduino Tutorial Kit Manual
 
+byte i = 0;
 int SW1 = 12;
 
 void setup() {
@@ -14,7 +15,12 @@ void loop() {
   if(!digitalRead(SW1)) {
     delay(50);
     if(!digitalRead(SW1)){
-      Serial.println("Button SW1 has been pressed");
+      i++;
+      Serial.print("Button SW1 has been pressed ");
+      Serial.print(i, DEC);
+      Serial.println(" times");
+      do {
+      } while(!digitalRead(SW1));
     }
   }
 }
