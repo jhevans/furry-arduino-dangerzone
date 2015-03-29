@@ -1,10 +1,9 @@
 // LED Dimmer
 
-int brightness = 0;
+int brightness = 255;
 int SW1 = 3;
 int SW2 = 2;
 int LED = 11;
-float pi = 3.14;
 
 void setup(){
   Serial.begin(9600);
@@ -15,15 +14,14 @@ void setup(){
 }
 
 void loop(){
-  
-  for(int i=0; i<256; i++){
-    float val = float(i)/256.0;
-    Serial.println(val);
-    float sinVal = sin(val*2.0*pi) + 1.0;
-    Serial.println(sinVal);
-    brightness = sinVal*128.0;
-    Serial.println(brightness);
-    analogWrite(LED, brightness);
-    delay(500);
-  }  
+  if(!digitalRead(SW1)&&digitalRead(SW2)){
+    Serial.println("SW2");
+    if(brightness<255)brightness++;
+  }
+  else if(digitalRead(SW1)&&!digitalRead(SW2)){
+    Serial.println("SW1");
+    if(brightness>0)brightness--;
+  }
+  analogWrite(LED, brightness);
+  delay(10);
 }
