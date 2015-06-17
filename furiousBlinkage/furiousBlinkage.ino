@@ -3,7 +3,7 @@
 #define arrayLength 6
 
 int i,x;
-int ledPin = 13;  // LED is connected with digital pin 13
+int ledPin = 12;  // LED is connected with digital pin 13
 int numbers[] = {1,4,6,7,8,24};
 
 // the setup routine configures the digital port
@@ -13,6 +13,9 @@ void setup(){
   Serial.begin(9600);
   // The pin is configured as output
   pinMode(ledPin, OUTPUT);
+  pinMode(13, OUTPUT);
+  pinMode(11, OUTPUT);
+  digitalWrite(11, HIGH);
   Serial.println("What say you men?");
   Serial.println();
 }
@@ -52,8 +55,10 @@ void loop(){
 
 void blinkOnce(int pin, int delayLength){
     digitalWrite(pin, HIGH);
+    digitalWrite(13, HIGH);
     delay(delayLength);
     digitalWrite(pin, LOW);
+    digitalWrite(13, LOW);
     delay(delayLength);
 }
 
