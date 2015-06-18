@@ -1,7 +1,17 @@
+// This program is a simple counter incremented by a single button.  There are 3 LED's to indicate how many times the 
+// button has been pressed since the system was last reset. 
+
+// From 0-GREEN_LIMIT presses the green light will be lit
+// from GREEN_LIMIT-AMBER_LIMIT the amber light will be lit
+// above AMBER_LIMIT the red light will be lit
+
+// An LED is lit whenever the button is pressed and turns off after LIGHT_DELAY milliseconds
+
+// Runs on Arduino UNO and Adafruit trinket
+
 int TRUE = 1;
 int FALSE = 0;
 
-int i,x;
 int BTN = 0;
 int RED_LED = 1;  
 int AMBER_LED = 2;
