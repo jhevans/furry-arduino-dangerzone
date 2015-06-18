@@ -1,14 +1,13 @@
-// Blink
-// Uses LED L on the Arduino board
-#define arrayLength 6
+int TRUE = 1;
+int FALSE = 0;
 
 int i,x;
-int RED_LED = 11;  
-int AMBER_LED = 12;
-int GREEN_LED = 13;
-int BTN = 10;
+int BTN = 0;
+int RED_LED = 1;  
+int AMBER_LED = 2;
+int GREEN_LED = 3;
 int DELAY = 20;
-
+int LIGHTS_ON_MAX_COUNT = 150;
 int GREEN_LIMIT = 150;
 int AMBER_LIMIT = 175;
 //int GREEN_LIMIT = 5;
@@ -16,6 +15,8 @@ int AMBER_LIMIT = 175;
 
 int count = 0;
 int btnValue1, btnValue2 = 0;
+int lightsOn = 0;
+int lightsCount = 0;
 
 void setup(){
 //  Serial.begin(9600);
@@ -33,14 +34,22 @@ void loop(){
 //    Serial.print("count: ");
 //    Serial.println(count);
     detectButtonPress();
-    if(count < GREEN_LIMIT) blinkOnce(GREEN_LED, DELAY);
-    else if (count < AMBER_LIMIT) blinkOnce(AMBER_LED, DELAY);
-    else blinkOnce(RED_LED, DELAY);
+    if(lightsOn == TRUE){
+      if(count < GREEN_LIMIT) blinkOnce(GREEN_LED, DELAY);
+      else if (count < AMBER_LIMIT) blinkOnce(AMBER_LED, DELAY);
+      else blinkOnce(RED_LED, DELAY);
+      
+      lightsCount ++;
+      if(lightsCount >= LIGHTS_ON_MAX_COUNT){
+        lightsCount = 0;
+        lightsOn = FALSE;
+      }
+    }
   }
 }
 
 void printBtn(){
-  Serial.println(digitalRead(BTN));
+//  Serial.println(digitalRead(BTN));
 }
 
 void detectButtonPress(){
@@ -54,6 +63,7 @@ void detectButtonPress(){
 //    Serial.println(btnValue2);
     if(btnValue2 == LOW){
       count++;
+      lightsOn = TRUE;
       while(!digitalRead(BTN)){
         // Do nothing
       }
