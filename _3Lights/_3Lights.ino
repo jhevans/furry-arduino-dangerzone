@@ -19,19 +19,18 @@ void setup(){
 
 void loop(){
   int count = 0;
-  int delayLength = 500;
+  int delayLength = 250;
   int value = 0;
   while(true){
     if(count % 10 == 0){
       value =  digitalRead(BTN1);
     }
     Serial.println(value);
-    if(value == 1){
+//    if(value == 1){
       blinkOnce(LED1, delayLength);
       blinkOnce(LED2, delayLength);
       blinkOnce(LED3, delayLength);
-      blinkOnce(LED2, delayLength);
-    }
+//    }
   }
 }
 
